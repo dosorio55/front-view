@@ -1,0 +1,25 @@
+.body {
+    margin: 2rem 0;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+
+    & > * {
+        margin: 2rem 4rem;
+    }
+
+    &__img {
+        border-top-left-radius: 3rem;
+        border-top-right-radius: 3rem;
+        width: 300px;
+    }
+
+    &__description {
+        width: 400px;
+
+    }
+}

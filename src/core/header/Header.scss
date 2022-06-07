@@ -1,0 +1,10 @@
+.headerContainer {
+    
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+
+    &__link {
+        padding: 1.5rem;
+    }
+}
