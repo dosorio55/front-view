@@ -15,6 +15,7 @@ const LoginModal = ({ modalValue }) => {
                     <h2 className="modalContainer__item">login</h2>
                 </div>
                 <div className="modalContainer__line"></div>
+                
                 <input className="modalContainer__item" type="text" />
                 <input className="modalContainer__item" type="text" />
                 <button className="modalContainer__item modalContainer__btn">login</button>
