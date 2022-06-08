@@ -18,7 +18,9 @@ const Form = () => {
     event.preventDefault(event)
     fetch('http://localhost:4000/user', {
       method: 'POST',
-      headers: { "Content-Type": "application/json" },
+      headers:{
+        'Content-Type':'application/json'
+    },
       body: JSON.stringify(formsState)
     }).then(() => {
       console.log(`the user ${formsState}`)
