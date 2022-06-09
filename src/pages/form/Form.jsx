@@ -1,11 +1,13 @@
 import React, { useReducer, useState } from 'react'
+import './Form.scss'
+
 
 const INITIAL_STATE = {
   name: '',
   description: '',
   career: '',
-  company: '',
-  study: ''
+  softSkills: '',
+  studies: ''
 };
 
 const Form = () => {
@@ -38,58 +40,68 @@ const Form = () => {
 
   const reducer = (state, action) => {
     switch (action.type) {
-      case 'Page1': return 2;
-      case 'decrement': return { count: state.count - 1 };
-      case 'reset': return initialState
+      case 'next': return state + 1;
+      case 'previous': return state - 1;
+      case state === 3: return
       default: return state;
     }
   }
 
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [skills, setSkills] = useState(['javaScript', 'CSS']);
 
-
+  const addSkill = () =>{
+    setSkills(skills.push('Angular'))
+    console.log(skills)
+  }
 
   return (
 
-    <div>
-      <form onSubmit={submitForm}>
-        {state === 1 ? <div>
-          <label>
-            <p>name</p>
-            <input type="text" name='name' value={formsState.name} onChange={handleInput} />
-          </label>
-          <label>
-            <p>career</p>
-            <input type="text" name='career' value={formsState.career} onChange={handleInput} />
-          </label>
-          <label>
-            <p>describe yourself</p>
-            <input type="text" name='description' value={formsState.description} onChange={handleInput} />
-          </label>
-          <div>
-            <button type="submit">Guardar Perfil</button>
-          </div>
-        </div>
-          : <div>
-            <label>
-              <p>company</p>
-              <input type="text" name='company' value={formsState.company} onChange={handleInput} />
-            </label>
-            <label>
-              <p>study</p>
-              <input type="text" name='study' value={formsState.study} onChange={handleInput} />
-            </label>
-
+    <div className='formContainer'>
+      {/* <img className='formContainer__img' src="https://images.unsplash.com/photo-1603201667141-5a2d4c673378?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1196&q=80" alt="" /> */}
+      <div>
+        <form onSubmit={submitForm}>
+          {state === 1 &&
             <div>
-              <button type="submit">Guardar Perfil</button>
-            </div>
-          </div>
-
-        }
-      </form>
-      <button onClick={() => dispatch({ type: 'Page1' })}>next</button>
-    </div>
+              <h2>yourself</h2>
+              <label>
+                <p>name</p>
+                <input type="text" name='name' value={formsState.name} onChange={handleInput} />
+              </label>
+              <label>
+                <p>career</p>
+                <input type="text" name='career' value={formsState.career} onChange={handleInput} />
+              </label>
+              <label>
+                <p>describe yourself</p>
+                <textarea name="description" id="" cols="0" rows="10" value={formsState.description} onChange={handleInput} ></textarea>
+              </label>
+            </div>}
+          {state === 2 &&
+            <div>
+              <h2>about me</h2>
+              <label>
+                <p>soft skills</p>
+                <input type="text" name='softSkills' value={formsState.softSkills} onChange={handleInput} />
+              </label>
+              <label>
+                <p>studies</p>
+                <input type="text" name='studies' value={formsState.studies} onChange={handleInput} />
+                <button onClick={addSkill}>add</button>
+              </label>
+              <div>
+                { skills.map((skill, key)=><p key={key}>{skill}</p> )}
+              </div>
+              <div>
+                {state === 3 && <button type="submit">Guardar Perfil</button>}
+              </div>
+            </div>}
+        </form >
+        <button onClick={() => dispatch({ type: 'previous' })}>previous</button>
+        <button onClick={() => dispatch({ type: 'next' })}>next</button>
+      </div>
+    </div >
   )
 }
 
