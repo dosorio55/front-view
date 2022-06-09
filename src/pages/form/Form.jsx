@@ -51,9 +51,11 @@ const Form = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [skills, setSkills] = useState(['javaScript', 'CSS']);
 
-  const addSkill = () =>{
-    setSkills(skills.push('Angular'))
-    console.log(skills)
+
+  const addSkill = () => {
+    const newList = [...skills]
+    newList.push('Angular')
+    setSkills(newList)
   }
 
   return (
@@ -88,16 +90,18 @@ const Form = () => {
               <label>
                 <p>studies</p>
                 <input type="text" name='studies' value={formsState.studies} onChange={handleInput} />
-                <button onClick={addSkill}>add</button>
               </label>
               <div>
-                { skills.map((skill, key)=><p key={key}>{skill}</p> )}
-              </div>
-              <div>
-                {state === 3 && <button type="submit">Guardar Perfil</button>}
+                <button onClick={addSkill}>add</button>
+                {skills.map((skill, key) => {
+                    return <p key={key}>{skill}</p>
+                  })}
               </div>
             </div>}
         </form >
+        <div>
+          {state === 2 && <button type="submit">Guardar Perfil</button>}
+        </div>
         <button onClick={() => dispatch({ type: 'previous' })}>previous</button>
         <button onClick={() => dispatch({ type: 'next' })}>next</button>
       </div>
