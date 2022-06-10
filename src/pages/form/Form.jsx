@@ -69,6 +69,7 @@ const Form = () => {
     const newList = [...skills]
     newList.push(event)
     setSkills(newList)
+    handleInput2()
   }
 
   return (
