@@ -72,6 +72,10 @@ const Form = () => {
     handleInput2(newList)
   }
 
+  const handleStudyOpts = () => { 
+    setStudyOpts(!studyOpts) 
+  }
+
   const skillsArray = ['React', 'Vue.js', 'Angular', 'Node', 'MongoDb']
 
   return (
@@ -96,6 +100,8 @@ const Form = () => {
                 <textarea name="description" id="" cols="0" rows="10" value={formsState.description} onChange={handleInput} ></textarea>
               </label>
             </div>}
+
+          {/* PAGE 2 */}
           {state === 2 &&
             <div>
               <h2>about me</h2>
@@ -103,10 +109,7 @@ const Form = () => {
                 <p>soft skills</p>
                 <input type="text" name='softSkills' value={formsState.softSkills} onChange={handleInput} />
               </label>
-              {/* <label>
-                <p>studies</p>
-                <input type="text" name='studies' value={formsState.studies} onChange={handleInput} />
-              </label> */}
+
               <div className='container'>
                 <p>studies</p>
                 <div className="select-box">
@@ -119,14 +122,14 @@ const Form = () => {
                     })}
 
                   </div>
-                  <div onClick={() => { setStudyOpts(!studyOpts) }} className='selected'>
+                  <div onClick={handleStudyOpts} className='selected'>
                     select your studies
                   </div>
                 </div>
 
               </div>
 
-              <button onClick={handleInput2}>add skills</button>
+              {/* <button onClick={handleInput2}>add skills</button> */}
 
               {skills.map((skill, key) => {
                 return <p key={key}>{skill}</p>
