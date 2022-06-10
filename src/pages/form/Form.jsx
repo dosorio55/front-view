@@ -20,14 +20,13 @@ const Form = () => {
     console.log(formsState)
   };
 
-  const [skills, setSkills] = useState([]);
-  const handleInput2 = () => {
-    const value = skills;
+  const handleInput2 = (data) => {
+    const value = data;
     console.log(value)
     setFormsState({ ...formsState, studies: value });
     console.log(formsState)
   };
-  
+
   const submitForm = (event) => {
     event.preventDefault(event)
     // fetch('http://localhost:4000/user', {
@@ -48,10 +47,9 @@ const Form = () => {
 
   const reducer = (state, action) => {
     switch (action.type) {
-      case 'next': 
-      state === 2 && setFormsState({ ...formsState, studies: skills });
-      return state + 1;
-      case 'previous': 
+      case 'next':
+        return state + 1;
+      case 'previous':
         return state - 1;
       case state === 3: return
       default: return state;
@@ -63,14 +61,18 @@ const Form = () => {
 
   const [studyOpts, setStudyOpts] = useState(false);
 
+  const [skills, setSkills] = useState([]);
 
   const addSkill = (ev) => {
     const event = ev.target.outerText
     const newList = [...skills]
     newList.push(event)
     setSkills(newList)
-    handleInput2()
+
+    handleInput2(newList)
   }
+
+  const skillsArray = ['React', 'Vue.js', 'Angular', 'Node', 'MongoDb']
 
   return (
 
@@ -107,45 +109,15 @@ const Form = () => {
               </label> */}
               <div className='container'>
                 <p>studies</p>
-                <div onClick={handleInput2} className="select-box">
+                <div className="select-box">
 
                   <div className={studyOpts ? 'options-container options-container--active' : 'options-container'}>
-                    <div onClick={addSkill} className="option">
-                    JS
-                        <p className='radio' onClick={addSkill}></p>
-                    </div>
-                    <div onClick={addSkill} className="option">
-                    JS
-                        <p className='radio' onClick={addSkill}></p>
-                    </div>
-                    <div onClick={addSkill} className="option">
-                    JS
-                        <p className='radio' onClick={addSkill}></p>
-                    </div>
-                    <div onClick={addSkill} className="option">
-                    React
-                        <p className='radio' onClick={addSkill}></p>
-                    </div>
-                    <div onClick={addSkill} className="option">
-                    Vue.js
-                        <p className='radio' onClick={addSkill}></p>
-                    </div>
-                    <div onClick={addSkill} className="option">
-                    JS
-                        <p className='radio' onClick={addSkill}></p>
-                    </div>
-                    <div className="option">
-                      <label>
-                        <input className='radio' type="radio" name='studies' value={formsState.studies} onChange={handleInput} />
-                        Angular
-                      </label>
-                    </div>
-                    <div className="option">
-                      <label>
-                        <input className='radio' type="radio" name='studies' value={formsState.studies} onChange={handleInput} />
-                        React
-                      </label>
-                    </div>
+                    {skillsArray.map((skill) => {
+                      return <div key={skill} className="option" onClick={addSkill}>
+                        <p>{skill}</p>
+                      </div>
+                    })}
+
                   </div>
                   <div onClick={() => { setStudyOpts(!studyOpts) }} className='selected'>
                     select your studies
@@ -154,23 +126,20 @@ const Form = () => {
 
               </div>
 
+              <button onClick={handleInput2}>add skills</button>
 
-
-
-
-              <button onClick={handleInput2}>add</button>
               {skills.map((skill, key) => {
                 return <p key={key}>{skill}</p>
               })}
               <div>
               </div>
             </div>}
-        <div>
-          {state === 2 && <button type="submit">Guardar Perfil</button>}
-        </div>
+          <div>
+            {state === 2 && <button type="submit">Guardar Perfil</button>}
+          </div>
         </form >
         {state !== 1 && <button onClick={() => dispatch({ type: 'previous' })}>previous</button>}
-        <button  onClick={() => dispatch({ type: 'next' })}>next</button>
+        <button onClick={() => dispatch({ type: 'next' })}>next</button>
       </div>
     </div >
   )
