@@ -1,4 +1,5 @@
 import React, { useReducer, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './Form.scss'
 
 
@@ -12,19 +13,23 @@ const INITIAL_STATE = {
 
 const Form = () => {
 
+  const navitageForm = useNavigate();
+
+
   const [formsState, setFormsState] = useState(INITIAL_STATE)
 
   const handleInput = (ev) => {
     const { name, value } = ev.target;
     setFormsState({ ...formsState, [name]: value });
     console.log(formsState)
+
   };
 
   const handleInput2 = (data) => {
     const value = data;
     console.log(value)
     setFormsState({ ...formsState, studies: value });
-    console.log(formsState)
+    // console.log(formsState)
   };
 
   const submitForm = (event) => {
@@ -38,6 +43,7 @@ const Form = () => {
     // }).then(() => {
     //   console.log(`the user ${formsState}`)
     // })
+    navitageForm('/profile')
 
     console.log(formsState)
 
@@ -72,8 +78,8 @@ const Form = () => {
     handleInput2(newList)
   }
 
-  const handleStudyOpts = () => { 
-    setStudyOpts(!studyOpts) 
+  const handleStudyOpts = () => {
+    setStudyOpts(!studyOpts)
   }
 
   const skillsArray = ['React', 'Vue.js', 'Angular', 'Node', 'MongoDb']
