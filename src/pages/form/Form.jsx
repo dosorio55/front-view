@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Form.scss'
 
 //SE LLAMA FRONTVIEW
+//SE LLAMA WINDVIEW
 
 
 const INITIAL_STATE = {

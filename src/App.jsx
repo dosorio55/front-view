@@ -6,6 +6,7 @@ import Form from './pages/form/Form';
 import Home from './pages/home/Home';
 import LoginModal from './shared/loginModal/LoginModal';
 import React, { useState } from 'react';
+import Network from './pages/network/Network';
 
 export const ModalContext = React.createContext()
 // export const ModalValueContext = React.createContext()
@@ -31,6 +32,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/form' element={<Form />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/network' element={<Network />} />
         <Route path='*' />
       </Routes>
     </Router>
