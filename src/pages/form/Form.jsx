@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   email: '',
   phone: '',
   address: '',
+  webpage: '',
   habilities: []
 };
 
@@ -35,23 +36,22 @@ const Form = () => {
     const value = data;
     console.log(value)
     setFormsState({ ...formsState, habilities: value });
-    // console.log(formsState)
   };
 
   const submitForm = (event) => {
     event.preventDefault(event)
-    // fetch('http://localhost:4000/user', {
-    //   method: 'POST',
-    //   headers:{
-    //     'Content-Type':'application/json'
-    // },
-    //   body: JSON.stringify(formsState)
-    // }).then(() => {
-    //   console.log(`the user ${formsState}`)
-    // })
+    fetch('http://localhost:4000/profiles/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formsState)
+    }).then(() => {
+      console.log(`the user ${formsState}`)
+    })
     navitageForm('/profile')
 
-    console.log(formsState)
+    // console.log(formsState)
 
   }
 
@@ -138,7 +138,7 @@ const Form = () => {
 
                   </div>
                   <div onClick={handleStudyOpts} className='selected'>
-                   profetional skills
+                    profetional skills
                   </div>
                 </div>
 

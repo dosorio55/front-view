@@ -4,8 +4,24 @@ import './LoginModal.scss'
 
 const LoginModal = ({ modalValue }) => {
 
+/*     const submitForm = (event) => {
+        event.preventDefault(event)
+        fetch('http://localhost:4000/user', {
+          method: 'POST',
+          headers:{
+            'Content-Type':'application/json'
+        },
+          body: JSON.stringify(formsState)
+        }).then(() => {
+          console.log(`the user ${formsState}`)
+        })
+        navitageForm('/profile')
+    
+        console.log(formsState)
+    
+      } */
+
     const handleModal = useContext(ModalContext);
-    // const modalState = useContext(ModalValueContext)
 
     return (
         <div>
