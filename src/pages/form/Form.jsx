@@ -2,13 +2,22 @@ import React, { useReducer, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './Form.scss'
 
+//SE LLAMA FRONTVIEW
+
 
 const INITIAL_STATE = {
   name: '',
   description: '',
-  career: '',
-  softSkills: '',
-  studies: []
+  headline: '',
+  work: '',
+  email: '',
+  phone: '',
+  address: '',
+  github: '',
+  projectName: '',
+  link: '',
+  projectImage: '',
+  habilities: []
 };
 
 const Form = () => {
@@ -28,7 +37,7 @@ const Form = () => {
   const handleInput2 = (data) => {
     const value = data;
     console.log(value)
-    setFormsState({ ...formsState, studies: value });
+    setFormsState({ ...formsState, habilities: value });
     // console.log(formsState)
   };
 
@@ -98,8 +107,12 @@ const Form = () => {
                 <input type="text" name='name' value={formsState.name} onChange={handleInput} />
               </label>
               <label>
-                <p>career</p>
-                <input type="text" name='career' value={formsState.career} onChange={handleInput} />
+                <p>headline</p>
+                <input type="text" name='headline' value={formsState.headline} onChange={handleInput} />
+              </label>
+              <label>
+                <p>profile image</p>
+                <input type="text" name='image' value={formsState.image} onChange={handleInput} />
               </label>
               <label>
                 <p>describe yourself</p>
@@ -110,14 +123,13 @@ const Form = () => {
           {/* PAGE 2 */}
           {state === 2 &&
             <div>
-              <h2>about me</h2>
+              <h2>Work experience</h2>
               <label>
-                <p>soft skills</p>
-                <input type="text" name='softSkills' value={formsState.softSkills} onChange={handleInput} />
+                <p>Where do you currently work?</p>
+                <input type="text" name='work' value={formsState.work} onChange={handleInput} />
               </label>
-
               <div className='container'>
-                <p>studies</p>
+                <p>Habilities</p>
                 <div className="select-box">
 
                   <div className={studyOpts ? 'options-container options-container--active' : 'options-container'}>
@@ -129,26 +141,69 @@ const Form = () => {
 
                   </div>
                   <div onClick={handleStudyOpts} className='selected'>
-                    select your studies
+                    select your web habilities
                   </div>
                 </div>
 
               </div>
-
-              {/* <button onClick={handleInput2}>add skills</button> */}
-
               {skills.map((skill, key) => {
                 return <p key={key}>{skill}</p>
               })}
               <div>
               </div>
-            </div>}
+            </div>
+          }
+
+          {state === 3 &&
+            <div>
+              <h2>Contact info</h2>
+              <label>
+                <p>email</p>
+                <input type="text" name='email' value={formsState.email} onChange={handleInput} />
+              </label>
+              <label>
+                <p>phone number</p>
+                <input type="text" name='phone' value={formsState.phone} onChange={handleInput} />
+              </label>
+              <label>
+                <p>personal website</p>
+                <input type="text" name='website' value={formsState.website} onChange={handleInput} />
+              </label>
+              <label>
+                <p>address</p>
+                <input type="text" name='address' value={formsState.address} onChange={handleInput} />
+              </label>
+            </div>
+
+          }
+          {state === 4 &&
+            <div>
+              <h2>Portafolio</h2>
+              <label>
+                <p>github</p>
+                <input type="text" name='github' value={formsState.github} onChange={handleInput} />
+              </label>
+              <label>
+                <p>project name</p>
+                <input type="text" name='projectName' value={formsState.projectName} onChange={handleInput} />
+              </label>
+              <label>
+                <p>github link</p>
+                <input type="text" name='link' value={formsState.link} onChange={handleInput} />
+              </label>
+              <label>
+                <p>projectImage</p>
+                <input type="text" name='projectImage' value={formsState.projectImage} onChange={handleInput} />
+              </label>
+            </div>
+
+          }
           <div>
-            {state === 2 && <button type="submit">Guardar Perfil</button>}
+            {state === 4 && <button type="submit">Guardar Perfil</button>}
           </div>
         </form >
         {state !== 1 && <button onClick={() => dispatch({ type: 'previous' })}>previous</button>}
-        <button onClick={() => dispatch({ type: 'next' })}>next</button>
+        {state !== 4 && <button onClick={() => dispatch({ type: 'next' })}>next</button>}
       </div>
     </div >
   )

@@ -9,13 +9,18 @@ const Profile = () => {
       <div className='profile'>
         <img className='profile__img' src={imageUrl} alt="profile foto" />
         <div>
-          <h2>Lorem ipsum dolor sit amet</h2>
-          <p className='profile__description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat autem repellendus commodi? Eaque accusamus vero commodi sint rem nam reprehenderit culpa quibusdam unde placeat, adipisci dolores facere repellendus exercitationem?</p>
-        <button>contact me</button>
+          <h2>I'm Leanne Joye</h2>
+          <p className='profile__description'>I'm a full stack web developer based in california. </p>
+        <button>facebook</button>
+        <button>Twiter</button>
+        <button>instagram</button>
         </div>
       </div>
       <div>
-        <h2>about me</h2>
+        <h1>about me</h1>
+        <h2>Full Stack web developer </h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo vel possimus itaque sunt dolor nihil nemo doloremque error, enim, dolorem voluptate vero velit ab laudantium animi in atque dignissimos iste necessitatibus magnam! Totam ullam facere deserunt quidem laborum assumenda inventore!</p>
+        <button>contact me</button>
       </div>
     </body>
   )
