@@ -8,15 +8,12 @@ import './Form.scss'
 const INITIAL_STATE = {
   name: '',
   description: '',
+  image: '',
   headline: '',
   work: '',
   email: '',
   phone: '',
   address: '',
-  github: '',
-  projectName: '',
-  link: '',
-  projectImage: '',
   habilities: []
 };
 
@@ -141,7 +138,7 @@ const Form = () => {
 
                   </div>
                   <div onClick={handleStudyOpts} className='selected'>
-                    select your web habilities
+                   profetional skills
                   </div>
                 </div>
 
@@ -176,34 +173,13 @@ const Form = () => {
             </div>
 
           }
-          {state === 4 &&
-            <div>
-              <h2>Portafolio</h2>
-              <label>
-                <p>github</p>
-                <input type="text" name='github' value={formsState.github} onChange={handleInput} />
-              </label>
-              <label>
-                <p>project name</p>
-                <input type="text" name='projectName' value={formsState.projectName} onChange={handleInput} />
-              </label>
-              <label>
-                <p>github link</p>
-                <input type="text" name='link' value={formsState.link} onChange={handleInput} />
-              </label>
-              <label>
-                <p>projectImage</p>
-                <input type="text" name='projectImage' value={formsState.projectImage} onChange={handleInput} />
-              </label>
-            </div>
 
-          }
           <div>
-            {state === 4 && <button type="submit">Guardar Perfil</button>}
+            {state === 3 && <button type="submit">Guardar Perfil</button>}
           </div>
         </form >
         {state !== 1 && <button onClick={() => dispatch({ type: 'previous' })}>previous</button>}
-        {state !== 4 && <button onClick={() => dispatch({ type: 'next' })}>next</button>}
+        {state !== 3 && <button onClick={() => dispatch({ type: 'next' })}>next</button>}
       </div>
     </div >
   )
