@@ -96,6 +96,7 @@ const Form = () => {
     <div className='formContainer'>
       {/* <img className='formContainer__img' src="https://images.unsplash.com/photo-1603201667141-5a2d4c673378?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1196&q=80" alt="" /> */}
       <div>
+
         <form onSubmit={submitForm}>
           {state === 1 &&
             <div>
@@ -139,7 +140,7 @@ const Form = () => {
 
                   </div>
                   <div onClick={handleStudyOpts} className='selected'>
-                    profetional skills
+                    prossional skills
                   </div>
                 </div>
 

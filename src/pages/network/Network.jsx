@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import './Network.scss'
+
 
 const Network = () => {
 
@@ -21,15 +23,24 @@ const Network = () => {
 
   return (
     <div>
-      {loading && <p>is loading</p>}
-      {profiles.map((profile) => {
-        const { _id, name, image } = profile;
-        return <div key={_id}>
-          <p>{name}</p>
-          <img src={image} alt="" />
+      <div className="networkContainer">
+        <div className="filter">all filters go here</div>
+        <div>
+          {loading && <p>is loading</p>}
+          {profiles.map((profile) => {
+            const { _id, name, image, headline } = profile;
+            return <div className="listContainer" key={_id}>
+              <img className='listContainer__img' src={image} alt="" />
+              <div>
+                <p className='listContainer__name'>{name}</p>
+                <p>{headline}</p>
+              </div>
+              <button className='listContainer_btn'>message</button>
+            </div>
+          }
+          )}
         </div>
-
-      })}
+      </div>
     </div>
   )
 }

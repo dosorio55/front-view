@@ -30,7 +30,7 @@ function App() {
       </ModalContext.Provider>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/form' element={<Form />} />
+        <Route path='/add-profile' element={<Form />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/network' element={<Network />} />
         <Route path='*' />
