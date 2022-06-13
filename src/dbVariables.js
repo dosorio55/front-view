@@ -1,0 +1,1 @@
+export const apiUrl = "https://windview-server.herokuapp.com"

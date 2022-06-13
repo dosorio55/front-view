@@ -1,5 +1,9 @@
 .body {
-    margin: 2rem 0;
+    margin: 1rem 4rem;
+
+    & > * {
+        padding: 0.75rem;
+    }
 }
 
 .profile {
@@ -8,7 +12,7 @@
     align-items: center;
     padding: 2rem;
 
-    & > * {
+    &>* {
         margin: 2rem 4rem;
     }
 
@@ -22,8 +26,88 @@
         width: 400px;
 
     }
+
 }
 
-.skills{
-    padding: 1.5rem;
+.aboutMe {
+    display: flex;
+    // justify-content: center;
+    flex-direction: column;
+    margin: 2.5rem 4rem;
+
+    &>* {
+        margin: 0.75rem;
+    }
+
+    & p {
+        color:  #64748b
+    }
+
+    & h1 {
+        align-self: center;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        
+    }
+
+    &__btn {
+        align-self: flex-end;
+    }
+
+
+}
+
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    margin: 2.5rem;
+    
+
+    & h2 {
+        align-self: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+
+
+    }
+
+    &__container {
+        padding: 1.5rem;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 20rem 20rem;
+        grid-auto-rows: 10rem 10rem;
+        grid-gap: 1em 1em;
+        // align-items: center;
+        // justify-items: center;
+
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #bfdbfe;
+        justify-items: end;
+        // margin: 1rem;
+        // padding: 4rem;
+        
+        & p {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+    }
+
+    &__logo{
+        width: 40px;
+    }
+}
+
+.linkedin {
+    width: 100px;
 }

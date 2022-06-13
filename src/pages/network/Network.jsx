@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { apiUrl } from '../../dbVariables';
 import './Network.scss'
 
 
@@ -9,7 +10,7 @@ const Network = () => {
 
   useEffect(() => {
     setLoading(true)
-    fetch('http://localhost:4000/profiles')
+    fetch(`${apiUrl}/profiles`)
       .then(response => response.json())
       .then(data => {
         setProfiles(data);

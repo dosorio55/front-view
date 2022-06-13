@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from '../../dbVariables';
 import './Form.scss'
 
 //SE LLAMA FRONTVIEW
@@ -41,7 +42,7 @@ const Form = () => {
 
   const submitForm = (event) => {
     event.preventDefault(event)
-    fetch('http://localhost:4000/profiles/create', {
+    fetch(`${apiUrl}/profiles/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
