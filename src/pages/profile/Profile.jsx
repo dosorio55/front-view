@@ -60,6 +60,11 @@ const Profile = () => {
           })}
         </div>
       </div>
+
+      <div className='container'>
+        <h2>My work</h2>
+      </div>
+
     </div>
   )
 }
