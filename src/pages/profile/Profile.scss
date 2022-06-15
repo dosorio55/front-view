@@ -1,7 +1,7 @@
 .body {
     margin: 1rem 4rem;
 
-    & > * {
+    &>* {
         padding: 0.75rem;
     }
 }
@@ -40,7 +40,7 @@
     }
 
     & p {
-        color:  #64748b
+        color: #64748b
     }
 
     & h1 {
@@ -48,7 +48,7 @@
         margin-bottom: 1.5rem;
         text-transform: uppercase;
         font-weight: 700;
-        
+
     }
 
     &__btn {
@@ -63,15 +63,12 @@
     display: flex;
     flex-direction: column;
     margin: 2.5rem;
-    
 
     & h2 {
         align-self: center;
         text-transform: uppercase;
         font-weight: 700;
         margin-bottom: 1.5rem;
-
-
     }
 
     &__container {
@@ -80,7 +77,7 @@
         justify-content: center;
         grid-template-columns: 20rem 20rem;
         grid-auto-rows: 10rem 10rem;
-        grid-gap: 1em 1em;
+        grid-gap: 1rem 1rem;
         // align-items: center;
         // justify-items: center;
 
@@ -93,9 +90,11 @@
         align-items: center;
         background-color: #bfdbfe;
         justify-items: end;
+        border-radius: 15px;
+
         // margin: 1rem;
         // padding: 4rem;
-        
+
         & p {
             text-transform: uppercase;
             font-weight: 500;
@@ -103,7 +102,7 @@
 
     }
 
-    &__logo{
+    &__logo {
         width: 40px;
     }
 }
@@ -116,4 +115,21 @@
     margin: 2.5rem;
     padding: 1.5rem;
 
+}
+
+.projectContainer {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 20rem 20rem 20rem;
+    grid-auto-rows: 15rem 15rem;
+    margin-top: 3rem;
+    grid-gap: 1rem 1rem;
+    
+    
+    & p {
+        border-radius: 15px;
+        background-color: #e6e6e6;
+        border-style: dashed groove none dotted;
+
+    }
 }

@@ -8,22 +8,21 @@ const imageUrl = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?i
 
 const Profile = () => {
 
-  //62a5d0b51dba4ebcd75922e6
   const [profile, setProfile] = useState({});
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   useEffect(() => {
-    // setLoading(true)
+    setLoading(true)
     fetch(`${apiUrl}/profiles/62a5d0b51dba4ebcd75922e6`)
       .then(response => response.json())
       .then(data => {
         setProfile(data);
         console.log(data)
       })
-    // .finally(() => {
-    //   setLoading(false);
-    // })
+      .finally(() => {
+        setLoading(false);
+      })
 
 
   }, []);
@@ -31,6 +30,7 @@ const Profile = () => {
   const { name, headline, description, habilities } = profile
   return (
     <div className='body'>
+      <p>{loading}</p>
       <div className='profile'>
         <img className='profile__img' src={imageUrl} alt="profile foto" />
         <div>
@@ -54,7 +54,7 @@ const Profile = () => {
         <div className='skills__container'>
           {habilities && habilities.map((skill) => {
             return <div className='skills__item' key={skill}>
-              <img className='skills__logo' src={react} alt="" />
+              <img className='skills__logo' src="/images/ReactLogo.png" alt="" />
               <p>{skill}</p>
             </div>
           })}
@@ -63,6 +63,12 @@ const Profile = () => {
 
       <div className='container'>
         <h2>My work</h2>
+        <div className='projectContainer'>
+          <p>add your proyects</p>
+          <p>add your proyects</p>
+          <p>add your proyects</p>
+          <p>add your proyects</p>
+        </div>
       </div>
 
     </div>
