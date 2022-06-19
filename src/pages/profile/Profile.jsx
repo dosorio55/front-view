@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../../context/api/context';
 import linkedin from '../../icons/linkedin.svg'
+import AddProject from './components/addProject/AddProject';
 import './Profile.scss'
 
 
@@ -8,6 +9,8 @@ const Profile = () => {
 
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [projectModal, setProjectModal] = useState(false);
 
 
   useEffect(() => {
@@ -25,9 +28,21 @@ const Profile = () => {
 
   }, []);
 
+  const handleEdit = () => {
+    setEditMode(!editMode)
+  }
+
+  const addProjectModal = () => {
+    setProjectModal(!projectModal)
+  }
+
   const { name, headline, description, habilities, image } = profile
   return (
+
     <div className='body'>
+
+     { projectModal && <AddProject modalSetter={setProjectModal} modalState={projectModal}></AddProject>}
+      {editMode ? <button onClick={handleEdit}>Stop edit mode</button> : <button onClick={handleEdit}>edit</button>  }
       <p>{loading}</p>
       <div className='profile'>
         <img className='profile__img' src={image} alt="profile foto" />
@@ -61,12 +76,11 @@ const Profile = () => {
 
       <div className='container'>
         <h2>My work</h2>
-        <div className='projectContainer'>
-          <p>add your proyects</p>
-          <p>add your proyects</p>
-          <p>add your proyects</p>
-          <p>add your proyects</p>
-        </div>
+        {editMode && <div className='projectContainer'>
+          <p onClick={addProjectModal}>add a new project</p>
+  
+
+        </div>}
       </div>
 
     </div>

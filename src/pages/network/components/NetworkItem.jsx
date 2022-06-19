@@ -10,15 +10,16 @@ const NetworkItem = ({ networkItem }) => {
 
   return (
     <div>
-      <div className="listContainer">
-        <img className='listContainer__img' src={image} alt="" />
-        <div>
-          <p className='listContainer__name'>{name}</p>
-          <p>{headline}</p>
+      <Link to={`${_id}`} >
+        <div className="listContainer">
+          <img className='listContainer__img' src={image} alt="" />
+          <div>
+            <p className='listContainer__name'>{name}</p>
+            <p>{headline}</p>
+          </div>
+          <button className='listContainer_btn'>message</button>
         </div>
-        <Link  to={`${_id}`}>network</Link>
-        <button className='listContainer_btn'>message</button>
-      </div>
+      </Link>
 
     </div>
   )
