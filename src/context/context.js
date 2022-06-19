@@ -1,4 +1,4 @@
-export const
+// export const
 
 
-expot BASE_URL = ""
+export const BASE_URL = "https://windview-server.herokuapp.com"

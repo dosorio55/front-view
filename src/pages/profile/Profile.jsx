@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { apiUrl } from '../../dbVariables';
+import { BASE_URL } from '../../context/context';
 import linkedin from '../../icons/linkedin.svg'
-import react from '../../icons/react.svg'
 import './Profile.scss'
 
-const imageUrl = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80';
 
 const Profile = () => {
 
@@ -14,7 +12,7 @@ const Profile = () => {
 
   useEffect(() => {
     setLoading(true)
-    fetch(`${apiUrl}/profiles/62a5d0b51dba4ebcd75922e6`)
+    fetch(`${BASE_URL}/profiles/62a5d0b51dba4ebcd75922e6`)
       .then(response => response.json())
       .then(data => {
         setProfile(data);
@@ -27,12 +25,12 @@ const Profile = () => {
 
   }, []);
 
-  const { name, headline, description, habilities } = profile
+  const { name, headline, description, habilities, image } = profile
   return (
     <div className='body'>
       <p>{loading}</p>
       <div className='profile'>
-        <img className='profile__img' src={imageUrl} alt="profile foto" />
+        <img className='profile__img' src={image} alt="profile foto" />
         <div>
           <h2>I'm {name}</h2>
           <p className='profile__description'>I'm a {headline} based in california. </p>
