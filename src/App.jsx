@@ -7,9 +7,9 @@ import Home from './pages/home/Home';
 import LoginModal from './shared/loginModal/LoginModal';
 import React, { useState } from 'react';
 import Network from './pages/network/Network';
+import NetworkProfile from './pages/NetworkProfile/NetworkProfile';
 
 export const ModalContext = React.createContext()
-// export const ModalValueContext = React.createContext()
 
 function App() {
 
@@ -23,16 +23,15 @@ function App() {
   return (
     <Router>
       <ModalContext.Provider value={handleModal}>
-        {/* <ModalValueContext value={modal}> */}
           <Header></Header>
           <LoginModal modalValue={modal}></LoginModal>
-        {/* </ModalValueContext> */}
       </ModalContext.Provider>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/add-profile' element={<Form />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/network' element={<Network />} />
+        <Route path='/network/:_id' element={<NetworkProfile/>} />
         <Route path='*' />
       </Routes>
     </Router>
