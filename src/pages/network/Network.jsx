@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { BASE_URL } from '../../context/context';
+import { BASE_URL } from '../../context/api/context';
 import './Network.scss'
 
 
 const Network = () => {
+
 
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(false);

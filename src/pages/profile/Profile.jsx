@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BASE_URL } from '../../context/context';
+import { BASE_URL } from '../../context/api/context';
 import linkedin from '../../icons/linkedin.svg'
 import './Profile.scss'
 
