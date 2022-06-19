@@ -1,9 +1,10 @@
 import React from 'react'
 
-const NetworkItem = () => {
+const NetworkItem = ({networkItem}) => {
+
   return (
     <div>
-
+      <p>{networkItem.name}</p>
     </div>
   )
 }

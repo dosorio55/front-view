@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../../context/api/context';
+import NetworkItem from './components/NetworkItem';
 import './Network.scss'
 
 
@@ -8,6 +9,7 @@ const Network = () => {
 
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     setLoading(true)
@@ -15,7 +17,7 @@ const Network = () => {
       .then(response => response.json())
       .then(data => {
         setProfiles(data);
-        console.log(data)
+       // console.log(data)
       })
       .finally(() => {
         setLoading(false);
@@ -23,10 +25,25 @@ const Network = () => {
 
   }, []);
 
+  const filteredNetwork = profiles.filter((filteredData) =>{
+   return filteredData.name.toLowerCase().includes(search)
+  })
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    setSearch(e.target.value.toLowerCase())
+   }
+
+  
   return (
     <div>
+      {filteredNetwork.map((data)=>
+      <NetworkItem key={data._id} networkItem={data}></NetworkItem>
+
+      )}
       <div className="networkContainer">
-        <div className="filter">all filters go here</div>
+        <input type="text" onChange={handleSearch}/>
+      {/*  <div className="filter">all filters go here</div>
         <div>
           {loading && <p>is loading</p>}
           {profiles.map((profile) => {
@@ -41,7 +58,7 @@ const Network = () => {
             </div>
           }
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   )
