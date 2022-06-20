@@ -12,7 +12,6 @@ export async function loginUser(dispatch, loginPayload) {
         dispatch({ type: 'REQUEST_LOGIN' });
         let response = await fetch(`${BASE_URL}/user/login`, requestOptions);
         let data = await response.json();
-        debugger
 
         if (data) {
             dispatch({ type: 'LOGIN_SUCCESS', payload: data.data });
