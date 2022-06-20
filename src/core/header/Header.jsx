@@ -1,21 +1,20 @@
 import React, { useContext } from 'react'
-import { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ModalContext } from '../../App';
-import { logout, useAuthDispatch, useGetState } from '../../context/auth';
+import { logout, useAuthDispatch } from '../../context/auth';
 import './Header.scss';
 
-const Header = () => {
+const Header = ({loginValue, setLogin }) => {
 
-  const [login, setLogin] = useState(false);
+  const navigate = useNavigate()
 
   const modal = useContext(ModalContext);
   const dispatch = useAuthDispatch()
-  const userState = useGetState()
-  // console.log(userState.id)
 
   const handleLogout = () =>{
     logout(dispatch)
+    navigate("/")
+    setLogin()
   }
 
   return (
@@ -27,7 +26,7 @@ const Header = () => {
             <Link className='headerContainer__link' to='/network'>network</Link>
         </div>
         <div>
-        { login ? <p onClick={handleLogout}>logOut</p> : <p onClick={modal}>login</p>}
+        { loginValue ? <p onClick={handleLogout}>logOut</p> : <p onClick={modal}>login</p>}
         </div>
     </header >
   )

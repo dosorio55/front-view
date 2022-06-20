@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { ModalContext } from '../../App';
-import { loginUser, useAuthDispatch, useGetState } from '../../context/auth';
+import { loginUser, useAuthDispatch } from '../../context/auth';
 import './LoginModal.scss'
 import { useNavigate } from "react-router-dom";
 
 
-const LoginModal = ({ modalValue }) => {
+const LoginModal = ({ modalValue, setLogin }) => {
 
   const handleModal = useContext(ModalContext);
   const navigate = useNavigate()
@@ -16,7 +16,7 @@ const LoginModal = ({ modalValue }) => {
   }
 
   const dispatch = useAuthDispatch();
-  const userState = useGetState();
+  // const userState = useGetState();
   const [loginForm, setLoginForm] = useState(formInitialState);
 
   const handleLoginForm = (event) => {
@@ -32,6 +32,7 @@ const LoginModal = ({ modalValue }) => {
     try {
       const response = await loginUser(dispatch, loginForm)
       // if (!response.id) return;
+      setLogin()
       navigate("/network")
     } catch (error) {
       console.log(error);

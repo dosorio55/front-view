@@ -14,7 +14,16 @@ export const ModalContext = React.createContext()
 
 function App() {
 
+  const initialState = localStorage.getItem("currentUser")
+  ? true
+  : false;
+
   const [modal, setModal] = useState(false);
+  const [login, setLogin] = useState(initialState)
+
+  const handleLogin = () =>{
+    setLogin(!login)
+  }
 
   const handleModal = () => {
     setModal(!modal)
@@ -25,8 +34,8 @@ function App() {
       <AuthProvider>
         <Router>
           <ModalContext.Provider value={handleModal}>
-            <Header></Header>
-            <LoginModal modalValue={modal}></LoginModal>
+            <Header loginValue={login} setLogin={handleLogin}></Header>
+            <LoginModal modalValue={modal} setLogin={handleLogin}></LoginModal>
           </ModalContext.Provider>
           <Routes>
             <Route path='/' element={<Home />} />
