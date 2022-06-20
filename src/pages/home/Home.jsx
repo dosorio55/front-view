@@ -11,7 +11,7 @@ const Home = () => {
       </div>
       <div className='homeConteiner__start'>
         <Link to='/add-profile' className='homeConteiner__start__btn'>get started</Link>
-        <input type="text" placeholder='search for network'/>
+        <input type="text" placeholder='search for network' />
       </div>
     </div>
   )

@@ -8,6 +8,7 @@ import LoginModal from './shared/loginModal/LoginModal';
 import React, { useState } from 'react';
 import Network from './pages/network/Network';
 import NetworkProfile from './pages/NetworkProfile/NetworkProfile';
+import { AuthProvider } from './context/auth';
 
 export const ModalContext = React.createContext()
 
@@ -21,20 +22,22 @@ function App() {
   }
 
   return (
-    <Router>
-      <ModalContext.Provider value={handleModal}>
-          <Header></Header>
-          <LoginModal modalValue={modal}></LoginModal>
-      </ModalContext.Provider>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/add-profile' element={<Form />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/network' element={<Network />} />
-        <Route path='/network/:_id' element={<NetworkProfile/>} />
-        <Route path='*' />
-      </Routes>
-    </Router>
+      <AuthProvider>
+        <Router>
+          <ModalContext.Provider value={handleModal}>
+            <Header></Header>
+            <LoginModal modalValue={modal}></LoginModal>
+          </ModalContext.Provider>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/add-profile' element={<Form />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/network' element={<Network />} />
+            <Route path='/network/:_id' element={<NetworkProfile />} />
+            <Route path='*' />
+          </Routes>
+        </Router>
+      </AuthProvider>
   );
 }
 

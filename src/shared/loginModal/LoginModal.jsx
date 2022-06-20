@@ -1,46 +1,84 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { ModalContext } from '../../App';
+import { loginUser, useAuthDispatch, useGetState } from '../../context/auth';
 import './LoginModal.scss'
+// import { useNavigate } from "react-router-dom";
+
 
 const LoginModal = ({ modalValue }) => {
 
-/*     const submitForm = (event) => {
-        event.preventDefault(event)
-        fetch('http://localhost:4000/user', {
-          method: 'POST',
-          headers:{
-            'Content-Type':'application/json'
-        },
-          body: JSON.stringify(formsState)
-        }).then(() => {
-          console.log(`the user ${formsState}`)
-        })
-        navitageForm('/profile')
-    
-        console.log(formsState)
-    
-      } */
+  // const navigate = useNavigate()
 
-    const handleModal = useContext(ModalContext);
+  const formInitialState = {
+    email: "",
+    password: ""
+  }
 
-    return (
+  const dispatch = useAuthDispatch();
+  const userState = useGetState();
+  console.log(userState)
+  const [loginForm, setLoginForm] = useState(formInitialState);
+
+  const handleLoginForm = (event) => {
+    const { name, value } = event.target; 
+    setLoginForm({...loginForm, [name]: value })
+    // console.log(loginForm)
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await loginUser(dispatch, loginForm)
+      if (!response.user) return;
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(loginForm)
+  }
+
+  const handleModal = useContext(ModalContext);
+
+  return (
+    <div>
+      <div className={modalValue ? 'modalContainer modalContainer--active' : 'modalContainer'}>
+
         <div>
-            <div className={modalValue ? 'modalContainer modalContainer--active' : 'modalContainer'}>
-
-                <div>
-                    <h2 className="modalContainer__item">login</h2>
-                </div>
-                <div className="modalContainer__line"></div>
-                
-                <input className="modalContainer__item" type="text" />
-                <input className="modalContainer__item" type="text" />
-                <button className="modalContainer__item modalContainer__btn">login</button>
-                <button className="modalContainer__item modalContainer__btn" onClick={handleModal}>handle</button>
-                <p>i already have an account</p>
-            </div>
-            <div className="overlay"></div>
+          <h2 className="modalContainer__item">login</h2>
         </div>
-    )
+        <div className="modalContainer__line"></div>
+
+        <label htmlFor="email">
+          <p>email</p>
+          <input
+            className="modalContainer__item"
+            name='email'
+            type="text"
+            id='email'
+            value={loginForm.email}
+            onChange={handleLoginForm}
+
+          />
+        </label>
+        <label htmlFor="password">
+          <p>password</p>
+          <input
+            className="modalContainer__item"
+            name='password'
+            type="password"
+            id='password'
+            value={loginForm.password}
+            onChange={handleLoginForm}
+
+          />
+        </label>
+        <button className="modalContainer__item modalContainer__btn" onClick={handleLogin}>login</button>
+        {/* <button className="modalContainer__item modalContainer__btn" onClick={handleModal}>handle</button> */}
+        <p>i already have an account</p>
+      </div>
+      <div className="overlay"></div>
+    </div>
+  )
 }
 
 export default LoginModal
