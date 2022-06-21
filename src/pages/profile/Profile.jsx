@@ -111,7 +111,10 @@ const Profile = () => {
         <div className='projectContainer'>
           {projects.map((project) =>
             <div key={project._id}>
-              <MyWork project={project}></MyWork>
+              <MyWork
+                project={project}
+                getProjects={getProjects}
+              ></MyWork>
             </div>
           )}
 

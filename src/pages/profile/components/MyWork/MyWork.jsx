@@ -1,10 +1,10 @@
 import React from 'react'
 import { BASE_URL } from '../../../../context/api/context'
 
-const MyWork = ({ project }) => {
+const MyWork = ({ project, getProjects }) => {
 
     const handleDelete = () => {
-        fetch(`${BASE_URL}/project/personal`, {
+        fetch(`${BASE_URL}/project`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -12,6 +12,7 @@ const MyWork = ({ project }) => {
         }).then(res => res.json())
             .then(data => {
                 console.log(data)
+                getProjects()
             })
     }
 
