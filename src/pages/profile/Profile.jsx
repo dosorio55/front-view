@@ -6,18 +6,19 @@ import './Profile.scss'
 
 
 const Profile = () => {
+  const jwtToken = JSON.parse(localStorage.getItem("currentUser")).token
 
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [projectModal, setProjectModal] = useState(false);
+  const [projects, setProjects] = useState([]);
 
 
   useEffect(() => {
-    
     setLoading(true)
-    const jwtToken = JSON.parse(localStorage.getItem("currentUser")).token
 
+    //get profile
     fetch(`${BASE_URL}/profiles/personal`, {
       method: 'GET',
       headers: {
@@ -32,9 +33,20 @@ const Profile = () => {
       .finally(() => {
         setLoading(false);
       })
-
-
   }, []);
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/project/personal`,{
+        method: 'GET',
+        headers: {
+           Authorization: `Bearer ${jwtToken}`
+        }
+      }).then(res => res.json())
+      .then(data => {
+        setProjects(data)
+        console.log(data)
+      })
+}, []);
 
   const handleEdit = () => {
     setEditMode(!editMode)
@@ -49,7 +61,7 @@ const Profile = () => {
 
     <div className='body'>
 
-     { projectModal && <AddProject modalSetter={setProjectModal} modalState={projectModal}></AddProject>}
+     { projectModal && <AddProject modalSetter={setProjectModal} modalState={projectModal} projects={projects} setProjects={setProjects}></AddProject>}
       {editMode ? <button onClick={handleEdit}>Stop edit mode</button> : <button onClick={handleEdit}>edit</button>  }
       <p>{loading}</p>
       <div className='profile'>
@@ -84,11 +96,18 @@ const Profile = () => {
 
       <div className='container'>
         <h2>My work</h2>
-        {editMode && <div className='projectContainer'>
+        <div className='projectContainer'>
+        { projects.map((project) =>
+        <div key={project._id}>
+          <p>{project.projectName}</p>
+        </div>
+        ) }
+        {editMode && 
           <p onClick={addProjectModal}>add a new project</p>
   
 
-        </div>}
+        }
+        </div>
       </div>
 
     </div>

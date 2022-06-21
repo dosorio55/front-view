@@ -1,44 +1,57 @@
-import React from 'react'
 import { useState } from 'react';
+import { BASE_URL } from '../../../../context/api/context';
 import './AddProject.scss'
 
 const INITIAL_STATE = {
 
     projectName: '',
-    projectLink: '',
+    imageLink: '',
     description: ''
 
 };
 
 
-const AddProject = ({modalSetter, modalState }) => {
+const AddProject = ({ modalSetter, modalState, projects, setProjects }) => {
+
+    const jwtToken = JSON.parse(localStorage.getItem("currentUser")).token
+
 
     const [formProject, setformProject] = useState(INITIAL_STATE);
 
     const handleInput = (ev) => {
         const { name, value } = ev.target;
         setformProject({ ...formProject, [name]: value });
-        console.log(formProject)
+        // console.log(formProject)
     };
 
 
     const submitForm = (event) => {
         event.preventDefault(event)
-        /*         fetch(`${BASE_URL}/profiles/create`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formsState)
-                }).then(() => {
-                    console.log(`the user ${formsState}`)
-                }) */
+        fetch(`${BASE_URL}/project`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${jwtToken}`
+            },
+            body: JSON.stringify(formProject)
+        }).finally(() => {
+            console.log(`${formProject}`)
+            modalSetter(false)
+        })
         // navitageForm('/profile')
-
-        console.log(formProject)
-        modalSetter(false)
-
     }
+
+/*     useEffect(() => {
+        fetch(`${BASE_URL}/project/personal`,{
+            method: 'GET',
+            headers: {
+               Authorization: `Bearer ${jwtToken}`
+            }
+          }).then(res => res.json())
+          .then(data => {
+            console.log(data)
+          })
+    }, []); */
 
     return (
         <div>
@@ -54,7 +67,7 @@ const AddProject = ({modalSetter, modalState }) => {
                         </label>
                         <label>
                             <p>image link</p>
-                            <input type="text" name='projectLink' value={formProject.projectLink} onChange={handleInput} />
+                            <input type="text" name='imageLink' value={formProject.imageLink} onChange={handleInput} />
                         </label>
                         <label>
                             <p>brief Description</p>
