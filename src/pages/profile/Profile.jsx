@@ -14,12 +14,20 @@ const Profile = () => {
 
 
   useEffect(() => {
+    
     setLoading(true)
-    fetch(`${BASE_URL}/profiles/62a5d0b51dba4ebcd75922e6`)
+    const jwtToken = JSON.parse(localStorage.getItem("currentUser")).token
+
+    fetch(`${BASE_URL}/profiles/personal`, {
+      method: 'GET',
+      headers: {
+         Authorization: `Bearer ${jwtToken}`
+      }
+    })
       .then(response => response.json())
       .then(data => {
-        setProfile(data);
-        console.log(data)
+        setProfile(data[0]);
+        console.log(data[0])
       })
       .finally(() => {
         setLoading(false);
