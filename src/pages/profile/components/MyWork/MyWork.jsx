@@ -4,7 +4,7 @@ import { BASE_URL } from '../../../../context/api/context'
 const MyWork = ({ project, getProjects }) => {
 
     const handleDelete = () => {
-        fetch(`${BASE_URL}/project`, {
+        fetch(`${BASE_URL}/project/${project._id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
