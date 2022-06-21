@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../../context/api/context';
 import linkedin from '../../icons/linkedin.svg'
 import AddProject from './components/addProject/AddProject';
+import MyWork from './components/MyWork/MyWork';
 import './Profile.scss'
 
 
@@ -106,13 +107,12 @@ const Profile = () => {
 
       <div className='container'>
         <h2>My work</h2>
+
         <div className='projectContainer'>
           {projects.map((project) =>
-            <div key={project._id}>
-              <p>{project.projectName}</p>
-              <button>delete</button>
-            </div>
+            <MyWork project={project}></MyWork>
           )}
+
           {editMode &&
             <p onClick={addProjectModal}>add a new project</p>
 
