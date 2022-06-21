@@ -27,8 +27,7 @@ const Profile = () => {
         setProjects(data)
         console.log(data)
       })
-  }
-
+  };
 
   useEffect(() => {
     setLoading(true)
@@ -47,8 +46,19 @@ const Profile = () => {
       })
       .finally(() => {
         setLoading(false);
+      });
+
+    fetch(`${BASE_URL}/project/personal`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`
+      }
+    }).then(res => res.json())
+      .then(data => {
+        setProjects(data)
+        console.log(data)
       })
-    getProjects()
+    // getProjects()
   }, [jwtToken]);
 
 
@@ -124,7 +134,7 @@ const Profile = () => {
 
           }
         </div>
-      </div> 
+      </div>
 
     </div>
   )

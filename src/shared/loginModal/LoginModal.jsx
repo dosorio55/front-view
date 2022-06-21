@@ -30,7 +30,7 @@ const LoginModal = ({ modalValue, setLogin }) => {
     handleModal()
 
     try {
-      const response = await loginUser(dispatch, loginForm)
+      await loginUser(dispatch, loginForm)
       // if (!response.id) return;
       setLogin()
       navigate("/network")
@@ -39,11 +39,12 @@ const LoginModal = ({ modalValue, setLogin }) => {
     }
     console.log(loginForm)
   }
-
-
+  
+  
   return (
     <div>
       <div className={modalValue ? 'modalContainer modalContainer--active' : 'modalContainer'}>
+      <button onClick={handleModal}>handle</button>
 
         <div>
           <h2 className="modalContainer__item">login</h2>
@@ -75,7 +76,6 @@ const LoginModal = ({ modalValue, setLogin }) => {
           />
         </label>
         <button className="modalContainer__item modalContainer__btn" onClick={handleLogin}>login</button>
-        {/* <button className="modalContainer__item modalContainer__btn" onClick={handleModal}>handle</button> */}
         <p>i already have an account</p>
       </div>
       <div className="overlay"></div>
