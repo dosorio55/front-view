@@ -32,7 +32,7 @@ const Profile = () => {
 
   useEffect(() => {
     setLoading(true)
-
+    debugger
     //get profile
     fetch(`${BASE_URL}/profiles/personal`, {
       method: 'GET',
@@ -110,7 +110,9 @@ const Profile = () => {
 
         <div className='projectContainer'>
           {projects.map((project) =>
-            <MyWork project={project}></MyWork>
+            <div key={project._id}>
+              <MyWork project={project}></MyWork>
+            </div>
           )}
 
           {editMode &&

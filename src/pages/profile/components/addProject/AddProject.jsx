@@ -37,6 +37,7 @@ const AddProject = ({ modalSetter, getProjects, setEditMode }) => {
             console.log(`${formProject}`)
             modalSetter(false)
         })
+        debugger
         getProjects()
         setEditMode()
     }
