@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 };
 
 
-const AddProject = ({ modalSetter, modalState, projects, setProjects }) => {
+const AddProject = ({ modalSetter, getProjects, setEditMode }) => {
 
     const jwtToken = JSON.parse(localStorage.getItem("currentUser")).token
 
@@ -21,7 +21,6 @@ const AddProject = ({ modalSetter, modalState, projects, setProjects }) => {
     const handleInput = (ev) => {
         const { name, value } = ev.target;
         setformProject({ ...formProject, [name]: value });
-        // console.log(formProject)
     };
 
 
@@ -38,20 +37,9 @@ const AddProject = ({ modalSetter, modalState, projects, setProjects }) => {
             console.log(`${formProject}`)
             modalSetter(false)
         })
-        // navitageForm('/profile')
+        getProjects()
+        setEditMode()
     }
-
-/*     useEffect(() => {
-        fetch(`${BASE_URL}/project/personal`,{
-            method: 'GET',
-            headers: {
-               Authorization: `Bearer ${jwtToken}`
-            }
-          }).then(res => res.json())
-          .then(data => {
-            console.log(data)
-          })
-    }, []); */
 
     return (
         <div>

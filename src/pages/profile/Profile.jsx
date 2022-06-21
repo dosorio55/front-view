@@ -6,6 +6,7 @@ import './Profile.scss'
 
 
 const Profile = () => {
+
   const jwtToken = JSON.parse(localStorage.getItem("currentUser")).token
 
   const [profile, setProfile] = useState({});
@@ -13,6 +14,19 @@ const Profile = () => {
   const [editMode, setEditMode] = useState(false);
   const [projectModal, setProjectModal] = useState(false);
   const [projects, setProjects] = useState([]);
+
+  const getProjects = () => {
+    fetch(`${BASE_URL}/project/personal`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`
+      }
+    }).then(res => res.json())
+      .then(data => {
+        setProjects(data)
+        console.log(data)
+      })
+  }
 
 
   useEffect(() => {
@@ -22,7 +36,7 @@ const Profile = () => {
     fetch(`${BASE_URL}/profiles/personal`, {
       method: 'GET',
       headers: {
-         Authorization: `Bearer ${jwtToken}`
+        Authorization: `Bearer ${jwtToken}`
       }
     })
       .then(response => response.json())
@@ -33,20 +47,9 @@ const Profile = () => {
       .finally(() => {
         setLoading(false);
       })
-  }, []);
+    getProjects()
+  }, [jwtToken]);
 
-  useEffect(() => {
-    fetch(`${BASE_URL}/project/personal`,{
-        method: 'GET',
-        headers: {
-           Authorization: `Bearer ${jwtToken}`
-        }
-      }).then(res => res.json())
-      .then(data => {
-        setProjects(data)
-        console.log(data)
-      })
-}, []);
 
   const handleEdit = () => {
     setEditMode(!editMode)
@@ -61,8 +64,15 @@ const Profile = () => {
 
     <div className='body'>
 
-     { projectModal && <AddProject modalSetter={setProjectModal} modalState={projectModal} projects={projects} setProjects={setProjects}></AddProject>}
-      {editMode ? <button onClick={handleEdit}>Stop edit mode</button> : <button onClick={handleEdit}>edit</button>  }
+      {projectModal &&
+        <AddProject
+          modalSetter={setProjectModal}
+          getProjects={getProjects}
+          setEditMode={setEditMode}
+        >
+        </AddProject>}
+
+      {editMode ? <button onClick={handleEdit}>Stop edit mode</button> : <button onClick={handleEdit}>edit</button>}
       <p>{loading}</p>
       <div className='profile'>
         <img className='profile__img' src={image} alt="profile foto" />
@@ -97,16 +107,17 @@ const Profile = () => {
       <div className='container'>
         <h2>My work</h2>
         <div className='projectContainer'>
-        { projects.map((project) =>
-        <div key={project._id}>
-          <p>{project.projectName}</p>
-        </div>
-        ) }
-        {editMode && 
-          <p onClick={addProjectModal}>add a new project</p>
-  
+          {projects.map((project) =>
+            <div key={project._id}>
+              <p>{project.projectName}</p>
+              <button>delete</button>
+            </div>
+          )}
+          {editMode &&
+            <p onClick={addProjectModal}>add a new project</p>
 
-        }
+
+          }
         </div>
       </div>
 
