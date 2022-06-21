@@ -31,7 +31,6 @@ const Profile = () => {
 
   useEffect(() => {
     setLoading(true)
-    debugger
     //get profile
     fetch(`${BASE_URL}/profiles/personal`, {
       method: 'GET',
@@ -119,7 +118,7 @@ const Profile = () => {
         <h2>My work</h2>
 
         <div className='projectContainer'>
-          {projects.map((project) =>
+          {projects && projects.map((project) =>
             <div key={project._id}>
               <MyWork
                 project={project}
