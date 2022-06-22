@@ -21,7 +21,7 @@ const Header = ({ loginValue, setLogin }) => {
     <header className='headerContainer'>
       <div>
         <Link className='headerContainer__link' to='/'>Home</Link>
-        <Link className='headerContainer__link' to='/profile'>my profile</Link>
+        {loginValue && <Link className='headerContainer__link' to='/profile'>my profile</Link>}
         {loginValue && <Link className='headerContainer__link' to='/add-profile'>add profile</Link>}
         <Link className='headerContainer__link' to='/network'>network</Link>
       </div>

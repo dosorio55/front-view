@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../../context/api/context';
-import linkedin from '../../icons/linkedin.svg'
 import AddProject from './components/addProject/AddProject';
 import MyWork from './components/MyWork/MyWork';
+import Experience from './components/Experience/Experience';
+import ProfileSocials from './components/ProfileSocials/ProfileSocials';
+import AboutMe from './components/AboutMe/AboutMe';
 import './Profile.scss'
+import NavBar from './NavBar/NavBar';
 
 
 const Profile = () => {
@@ -72,47 +75,59 @@ const Profile = () => {
   const { name, headline, description, habilities, image } = profile
   return (
 
-    <div className='body'>
+    <div className='header'>
 
-      {projectModal &&
-        <AddProject
-          modalSetter={setProjectModal}
-          getProjects={getProjects}
-          setEditMode={setEditMode}
-        >
-        </AddProject>}
 
-      {editMode ? <button onClick={handleEdit}>Stop edit mode</button> : <button onClick={handleEdit}>edit</button>}
+      <div id='user' className='container header__container'>
+
+        <h5 >Hello I am</h5>
+        <h1>{name}</h1>
+        <h5 className='text-light'>{headline}</h5>
+
+
+        <ProfileSocials />
+
+        <div className='ImageMe'>
+
+          <img className='ImageMe__img' src={image} alt="profile foto" />
+        </div>
+
+        <NavBar handleEdit={handleEdit} editMode={editMode}></NavBar>
+
+
+      </div>
+
+      <AboutMe description={description}></AboutMe>
+
+      <Experience habilities={habilities}></Experience>
+
+      <section>
+        <h5>The Skills I Have</h5>
+        <h2>My Expertise</h2>
+
+      <div>
+
+      </div>
+
+        <div className='skills'>
+          <div className='skills__container'>
+            {habilities && habilities.map((skill) => {
+              return <div className='skills__item' key={skill}>
+                {/* <img className='skills__logo' src="/images/ReactLogo.png" alt="" /> */}
+                <p>{skill}</p>
+              </div>
+            })}
+          </div>
+        </div>
+      </section>
+
+
       <p>{loading}</p>
-      <div className='profile'>
-        <img className='profile__img' src={image} alt="profile foto" />
-        <div>
-          <h2>I'm {name}</h2>
-          <p className='profile__description'>I'm a {headline} based in california. </p>
-          <img className='linkedin' src={linkedin} alt="linkedin" />
-          <button>Twiter</button>
-          <button>instagram</button>
-        </div>
-      </div>
 
-      <div className='aboutMe'>
-        <h1 className='aboutMe__title'>about me</h1>
-        <h2>Full Stack web developer </h2>
-        <p>{description}</p>
-        <button className='aboutMe__btn'>contact me</button>
-      </div>
 
-      <div className='skills'>
-        <h2>skills</h2>
-        <div className='skills__container'>
-          {habilities && habilities.map((skill) => {
-            return <div className='skills__item' key={skill}>
-              <img className='skills__logo' src="/images/ReactLogo.png" alt="" />
-              <p>{skill}</p>
-            </div>
-          })}
-        </div>
-      </div>
+
+
+
 
       <div className='container'>
         <h2>My work</h2>
@@ -135,6 +150,13 @@ const Profile = () => {
         </div>
       </div>
 
+      {/* ===================================================Modal and edit ===================== */}
+      {projectModal &&
+        <AddProject
+          modalSetter={setProjectModal}
+          getProjects={getProjects}
+        >
+        </AddProject>}
     </div>
   )
 }

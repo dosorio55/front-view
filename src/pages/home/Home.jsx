@@ -10,7 +10,7 @@ const Home = () => {
         <h1>Reach all your contacts in one place and build your PROFILE.</h1>
       </div>
       <div className='homeConteiner__start'>
-        <Link to='/add-profile' className='homeConteiner__start__btn'>get started</Link>
+        <Link to='/add-profile' className='btn btn-primary'>get started</Link>
         <input type="text" placeholder='search for network' />
       </div>
     </div>
