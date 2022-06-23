@@ -119,7 +119,7 @@ const Profile = () => {
           )}
           {editMode &&
             <article className='portfolio__item'>
-              <p onClick={addProjectModal}>add a new project</p>
+              <p className='btn parrafo' onClick={addProjectModal}>add a new project</p>
             </article>
           }
         </div>

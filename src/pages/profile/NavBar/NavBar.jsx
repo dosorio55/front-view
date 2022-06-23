@@ -7,7 +7,7 @@ const NavBar = ({handleEdit, editMode}) => {
     <nav className='header__opts'>
         <a href="#none" onClick={handleEdit}>{editMode ? <BiStopCircle className='red' /> : <FaEdit /> }</a>
         <a href="#user"><FaUserTie/></a>
-        <a href="#ola"><FaWrench/></a>
+        <a href="#work"><FaWrench/></a>
     </nav>
   )
 }

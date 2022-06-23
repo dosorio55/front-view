@@ -7,9 +7,9 @@ const ProfileSocials = () => {
 
     <div className='header__socials'>
     
-        <a href="#none"><BsLinkedin/></a>
-        <a href="#none"><BsGithub/></a>
-        <a href="#none"><AiOutlineTwitter/></a>
+        <a href="https://www.linkedin.com/feed/"><BsLinkedin/></a>
+        <a href="https://github.com/dosorio55?tab=repositories"><BsGithub/></a>
+        <a href="https://twitter.com/"><AiOutlineTwitter/></a>
         {/* <a href="#contact" className='scroll__down'>Scroll Down</a> */}
 
     </div>

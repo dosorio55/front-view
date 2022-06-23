@@ -53,7 +53,7 @@ const LoginModal = ({ modalValue, setLogin }) => {
 
 
   return (
-    <div>
+    <div className='container'>
       <div className={modalValue ? 'modalContainer modalContainer--active' : 'modalContainer'}>
         <button onClick={handleModal}>handle</button>
 
