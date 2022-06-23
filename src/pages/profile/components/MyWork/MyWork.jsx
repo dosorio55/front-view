@@ -1,7 +1,10 @@
 import React from 'react'
 import { BASE_URL } from '../../../../context/api/context'
+import './MyWork.scss'
 
-const MyWork = ({ project, getProjects }) => {
+const MyWork = ({ project, getProjects, editMode }) => {
+
+    const { projectName, description , imageLink } = project
 
     const handleDelete = () => {
         fetch(`${BASE_URL}/project/${project._id}`, {
@@ -17,10 +20,18 @@ const MyWork = ({ project, getProjects }) => {
     }
 
     return (
-        <div>
-            <p>{project.projectName}</p>
-            <button onClick={handleDelete}>delete</button>
-        </div>
+            <article className='portfolio__item'>
+               {editMode && <button onClick={handleDelete}>delete</button>}
+                <div className='portfolio__item-image'>
+                    <img src={imageLink} alt={projectName} />
+                </div>
+                <h3>{projectName}</h3>
+                <p>{description}</p>
+                <div className="portfolio__item-cta">
+                    <a href="https://github.com/dosorio55" className='btn'>Github</a>
+                    <a href="https://tailwindcss.com" className='btn btn-primary'>Live Demo</a>
+                </div>
+            </article>
     )
 }
 

@@ -76,6 +76,7 @@ const Profile = () => {
   return (
 
     <div className='header'>
+      <p>{loading}</p>
 
 
       <div id='user' className='container header__container'>
@@ -99,60 +100,35 @@ const Profile = () => {
 
       <AboutMe description={description}></AboutMe>
 
-      <Experience habilities={habilities}></Experience>
+      {habilities && <Experience habilities={habilities}></Experience>}
 
-      <section>
-        <h5>The Skills I Have</h5>
-        <h2>My Expertise</h2>
 
-      <div>
 
-      </div>
+      <section id='portfolio' className='portafolioSection'>
+        <h5>My Recent Work</h5>
+        <h2>Portafolio</h2>
+        <div className='container portfolio__container'>
+          {projects && projects.map((project) =>
 
-        <div className='skills'>
-          <div className='skills__container'>
-            {habilities && habilities.map((skill) => {
-              return <div className='skills__item' key={skill}>
-                {/* <img className='skills__logo' src="/images/ReactLogo.png" alt="" /> */}
-                <p>{skill}</p>
-              </div>
-            })}
-          </div>
+            <MyWork
+              key={project._id}
+              project={project}
+              getProjects={getProjects}
+              editMode={editMode}
+            ></MyWork>
+          )}
+          {editMode &&
+            <article className='portfolio__item'>
+              <p onClick={addProjectModal}>add a new project</p>
+            </article>
+          }
         </div>
       </section>
 
-
-      <p>{loading}</p>
-
-
-
-
-
-
-      <div className='container'>
-        <h2>My work</h2>
-
-        <div className='projectContainer'>
-          {projects && projects.map((project) =>
-            <div key={project._id}>
-              <MyWork
-                project={project}
-                getProjects={getProjects}
-              ></MyWork>
-            </div>
-          )}
-
-          {editMode &&
-            <p onClick={addProjectModal}>add a new project</p>
-
-
-          }
-        </div>
-      </div>
-
-      {/* ===================================================Modal and edit ===================== */}
+      {/* ===================================================Modal ===================== */}
       {projectModal &&
         <AddProject
+
           modalSetter={setProjectModal}
           getProjects={getProjects}
         >

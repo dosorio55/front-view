@@ -42,10 +42,8 @@ const AddProject = ({ modalSetter, getProjects, setEditMode }) => {
     }
 
     return (
-        <div>
-            <div className='addProjectContainer'>
-
-                <div>
+        <div className=' addProjectContainer'>
+            <div >
                     <h2>Add new project</h2>
                     <form onSubmit={submitForm}>
 
@@ -61,9 +59,9 @@ const AddProject = ({ modalSetter, getProjects, setEditMode }) => {
                             <p>brief Description</p>
                             <textarea name="description" id="" cols="0" rows="10" value={formProject.description} onChange={handleInput} ></textarea>
                         </label>
-                        <button type='submit' >Save project</button>
+                        <button className='btn btn-primary' type='submit' >Save project</button>
                     </form>
-                </div>
+
             </div>
         </div>
     )

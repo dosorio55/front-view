@@ -33,7 +33,7 @@
             height: 2rem;
             background: var(--color-primary);
         }
-    
+
 
     }
 
@@ -43,10 +43,11 @@
         align-items: center;
         gap: .8rem;
         position: absolute;
-        right: 0;
+        right: 10%;
         padding: 2px;
         border-radius: 100px;
         color: var(--color-primary);
+        position: fixed;
 
         &::before {
             content: '';
@@ -60,6 +61,10 @@
             width: 1px;
             height: 2rem;
             background: var(--color-primary);
+        }
+
+        .red {
+            color: red;
         }
 
     }
@@ -79,144 +84,71 @@
 
 
 
-/* =========== Socials =========== */
-
-
-/* .body {
-    margin: 1rem 4rem;
-
-    &>* {
-        padding: 0.75rem;
-    }
-}
-
-.profile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-
-    &>* {
-        margin: 2rem 4rem;
-    }
-
-    &__img {
-        border-top-left-radius: 3rem;
-        border-top-right-radius: 3rem;
-        width: 300px;
-    }
-
-    &__description {
-        width: 400px;
-
-    }
-
-}
-
-.aboutMe {
-    display: flex;
-    // justify-content: center;
-    flex-direction: column;
-    margin: 2.5rem 4rem;
-
-    &>* {
-        margin: 0.75rem;
-    }
-
-    & p {
-        color: #64748b
-    }
-
-    & h1 {
-        align-self: center;
-        margin-bottom: 1.5rem;
-        text-transform: uppercase;
-        font-weight: 700;
-
-    }
-
-    &__btn {
-        align-self: flex-end;
-    }
-
-
-}
-
-
-.skills {
-    display: flex;
-    flex-direction: column;
-    margin: 2.5rem;
-
-    & h2 {
-        align-self: center;
-        text-transform: uppercase;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-    }
+/* =========== portfolio =========== */
+.portfolio {
 
     &__container {
-        padding: 1.5rem;
         display: grid;
-        justify-content: center;
-        grid-template-columns: 20rem 20rem;
-        grid-auto-rows: 10rem 10rem;
-        grid-gap: 1rem 1rem;
-        // align-items: center;
-        // justify-items: center;
-
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
     }
 
     &__item {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #bfdbfe;
-        justify-items: end;
-        border-radius: 15px;
+        background: var(--color-bg-variant);
+        padding: 1.2rem;
+        border-radius: 2rem;
+        border: 1px solid transparent;
+        transition: var(--transition);
 
-
-
-        & p {
-            text-transform: uppercase;
-            font-weight: 500;
+        &:hover {
+            border-color: var(--color-light);
+            background: transparent;
         }
 
-    }
+        &-image {
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
 
-    &__logo {
-        width: 40px;
+        & h3, p {
+            margin: 1.2rem 0 2rem;
+        }
+
+        &-cta {
+            display: flex;
+            // justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
     }
 }
 
-.linkedin {
-    width: 30px;
+.portafolioSection{
+    min-height: 100vh;
 }
 
-.container {
-    margin: 2.5rem;
-    padding: 1.5rem;
+.addProjectContainer{
+    display: flex;
+    background-color: var(--color-bg-variant);
+    padding: 2rem;
 
-}
-
-.projectContainer {
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    grid-template-columns: 20rem 20rem 20rem;
-    grid-auto-rows: 15rem 15rem;
-    margin-top: 3rem;
-    grid-gap: 1rem 1rem;
-    
-    
-    & > div {
-        border-radius: 15px;
-        text-align: center;
-        width: 90%;
-        height: 90%;
-        background-color: #e6e6e6;
-        border-style: dashed groove none dotted;
-
+    & form {
+        display: flex;
+        flex-direction: column;
     }
-} */
+
+}
+
+@media screen and (max-width: 1024px) {
+    .portfolio__container {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .portfolio__container {
+        grid-template-columns: 1fr;
+        gap: 1rem
+    }
+}
