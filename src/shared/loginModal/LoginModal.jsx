@@ -38,10 +38,10 @@ const LoginModal = ({ modalValue, setLogin }) => {
     try {
       if (loginBtn) {
         await signIn(dispatch, loginForm)
-      }else{
+      } else {
         await loginUser(dispatch, loginForm)
         // if (!response.id) return;
-        
+
       }
       setLogin()
       navigate("/network")
@@ -87,7 +87,7 @@ const LoginModal = ({ modalValue, setLogin }) => {
           />
         </label>
         <button className="modalContainer__item modalContainer__btn" onClick={handleLogin}>{loginBtn ? 'create account' : "login"}</button>
-        <p onClick={handleBtnLogin}>{loginBtn ? 'i already have an account' : 'Create an account' }</p>
+        <p onClick={handleBtnLogin}>{loginBtn ? 'i already have an account' : 'Create an account'}</p>
       </div>
       <div className="overlay"></div>
     </div>

@@ -6,7 +6,7 @@ import Experience from './components/Experience/Experience';
 import ProfileSocials from './components/ProfileSocials/ProfileSocials';
 import AboutMe from './components/AboutMe/AboutMe';
 import './Profile.scss'
-import NavBar from './NavBar/NavBar';
+import NavBar from './components/NavBar/NavBar';
 
 
 const Profile = () => {
